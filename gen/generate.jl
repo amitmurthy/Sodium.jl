@@ -80,39 +80,52 @@ println(f, "#   Generating #define constants")
 
 fe = open("../src/ls_exports_h.jl", "w+")
 println(fe, "#   Generating exports")
-for e in split(open(readall, "../src/ls_sodium_h.jl"))
+for e in split(open(readall, "../src/ls_sodium_h.jl"), "\n")
   m = match(r"^\s*\@c\s+[\w\:\{\}\_]+\s+(\w+)", e)
   if (m != nothing)
+    println(m)
     @printf fe "export %s\n"  m.captures[1]
   end
 end
 
-for e in split(open(readall, "../src/ls_common_h.jl"))
+for e in split(open(readall, "../src/ls_common_h.jl"), "\n")
   m = match(r"^\s*\@ctypedef\s+(\w+)", e)
   if (m != nothing)
-#   println(m.captures[1])
+   println(m.captures[1])
     @printf fe "export %s\n"  m.captures[1]
   else
     m = match(r"^\s*const\s+(\w+)", e)
     if (m != nothing)
-#       println(m.captures[1])
+       println(m.captures[1])
         @printf fe "export %s\n"  m.captures[1]
     end
   end
 end
 
 
+g_consts = Set()
 
 for fn in split(readall(`ls /usr/local/include/sodium/`))
     hashdefs = split(readall(`gcc -E -dD -P /usr/local/include/sodium/$fn`), "\n")
     for e in hashdefs
-    m = match(r"^\s*#define\s+crypto_(\w+)\s+(.+)", e)
-    if (m != nothing) 
-#        println(m)
-        c2 = replace (m.captures[2], "(unsigned long)", "")
-        @printf f "const crypto_%-30s = %s\n"  m.captures[1]  c2
-        @printf fe "export crypto_%s\n"  m.captures[1]
-    end
+        m = match(r"^\s*#define\s+crypto_(\w+)\s+(.+)", e)
+        if (m != nothing)
+    #        println(m.captures[2])
+            if !(contains(g_consts, m.captures[1]))
+                m2 = match(r"^\s*(\d+)([a-zA-Z]+)", m.captures[2])
+                if m2 != nothing
+                    println ("replacing $(m.captures[2]) with $(m2.captures[1])")
+                    c2 = m2.captures[1]
+                else
+                    c2 = m.captures[2]
+                end
+
+                @printf f "const crypto_%-30s = %s\n"  m.captures[1]  c2
+                @printf fe "export crypto_%s\n"  m.captures[1]
+
+                add!(g_consts, m.captures[1])
+            end
+        end
     end
 end
 
