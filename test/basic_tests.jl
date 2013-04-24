@@ -2,7 +2,7 @@ using Base.Test
 using Sodium
 
 function parse_hexstring(s::String)
-    out = zeros(Uint8, length(s)/2)
+    out = zeros(Uint8, int(length(s)/2))
     for i in 1:length(s)/2
         offset = i * 2
         out[i] = parseint(s[offset-1:offset], 16)
@@ -50,7 +50,7 @@ key[2] = 'e'
 key[3] = 'y'
 
 @test 0 == crypto_auth_hmacsha256(out, tstr, length(tstr), key)
-refval = parse_hexstring(zeros(Uint8, 32), tstr_hmacsha256)
+refval = parse_hexstring(tstr_hmacsha256)
 @test refval == out
 println("PASSED")
 
