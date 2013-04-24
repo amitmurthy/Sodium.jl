@@ -152,6 +152,7 @@ export randombytes_sysrandom_buf
 export randombytes_sysrandom_close
 export _sodium_alignedcalloc
 export sodium_memzero
+export sodium_memcmp
 export sodium_version_string
 export sodium_library_version_major
 export sodium_library_version_minor

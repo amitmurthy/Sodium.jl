@@ -154,6 +154,7 @@
 @c Int32 randombytes_sysrandom_close () libsodium
 @c Ptr{Uint8} _sodium_alignedcalloc (Ptr{Ptr{Uint8}}, size_t) libsodium
 @c None sodium_memzero (Ptr{None}, size_t) libsodium
+@c Int32 sodium_memcmp (Ptr{None}, Ptr{None}, size_t) libsodium
 @c Ptr{Uint8} sodium_version_string () libsodium
 @c Int32 sodium_library_version_major () libsodium
 @c Int32 sodium_library_version_minor () libsodium
