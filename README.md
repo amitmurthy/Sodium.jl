@@ -1,7 +1,7 @@
 Sodium
 ======
 
-Thin Julia wrapper for libsodium
+Thin Julia wrapper for [libsodium](http://labs.opendns.com/2013/03/06/announcing-sodium-a-new-cryptographic-library/), a crytographic library.
 
 gen/generate.jl generates the wrapper using Clang.jl
 
