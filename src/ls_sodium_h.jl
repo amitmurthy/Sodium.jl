@@ -138,23 +138,23 @@
 @c uint32_t randombytes_random () libsodium
 @c None randombytes_stir () libsodium
 @c uint32_t randombytes_uniform (uint32_t,) libsodium
-@c None randombytes_buf (Ptr{None}, size_t) libsodium
+@c None randombytes_buf (Ptr{Void}, size_t) libsodium
 @c Int32 randombytes_close () libsodium
 @c Ptr{Uint8} randombytes_salsa20_implementation_name () libsodium
 @c uint32_t randombytes_salsa20_random () libsodium
 @c None randombytes_salsa20_random_stir () libsodium
 @c uint32_t randombytes_salsa20_random_uniform (uint32_t,) libsodium
-@c None randombytes_salsa20_random_buf (Ptr{None}, size_t) libsodium
+@c None randombytes_salsa20_random_buf (Ptr{Void}, size_t) libsodium
 @c Int32 randombytes_salsa20_random_close () libsodium
 @c Ptr{Uint8} randombytes_sysrandom_implementation_name () libsodium
 @c uint32_t randombytes_sysrandom () libsodium
 @c None randombytes_sysrandom_stir () libsodium
 @c uint32_t randombytes_sysrandom_uniform (uint32_t,) libsodium
-@c None randombytes_sysrandom_buf (Ptr{None}, size_t) libsodium
+@c None randombytes_sysrandom_buf (Ptr{Void}, size_t) libsodium
 @c Int32 randombytes_sysrandom_close () libsodium
 @c Ptr{Uint8} _sodium_alignedcalloc (Ptr{Ptr{Uint8}}, size_t) libsodium
-@c None sodium_memzero (Ptr{None}, size_t) libsodium
-@c Int32 sodium_memcmp (Ptr{None}, Ptr{None}, size_t) libsodium
+@c None sodium_memzero (Ptr{Void}, size_t) libsodium
+@c Int32 sodium_memcmp (Ptr{Void}, Ptr{Void}, size_t) libsodium
 @c Ptr{Uint8} sodium_version_string () libsodium
 @c Int32 sodium_library_version_major () libsodium
 @c Int32 sodium_library_version_minor () libsodium
